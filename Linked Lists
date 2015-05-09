@@ -101,6 +101,27 @@ int llist_save(LinkedList * list, char * file_name) {
     return 0;
 }
 //
+// Sorts the list in ascending order
+//
+void llist_sort(LinkedList * list) {
+    ListNode * current = list->head;
+    ListNode * other = NULL;
+    int flag = 1;
+    do {
+        flag = 0;
+        current = list->head;
+        while (current->next != NULL) {
+            if (current->value > current->next->value) {
+                int temp = current->value;
+                current->value = current->next->value;
+                current->next->value = temp;
+                flag = 1;
+            }
+            current = current->next;
+        }
+    } while (flag);
+}
+//
 // Removes the ith entry from the list. Returns 1 if success or 0 if there is no ith entry.
 //
 int llist_remove_ith(LinkedList * list, int ith) {
@@ -178,4 +199,16 @@ void llist_print(LinkedList * list) {
           printf(", ");
     }
     printf("}\n");
+}
+//
+// Lists the number of elements in the list
+//
+int llist_number_elements(LinkedList * list) {
+        ListNode * e = list->head;
+        int n = 0;
+        while (e != NULL) {
+                e = e->next;
+                n++;
+        }
+        return n;
 }
