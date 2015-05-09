@@ -2,8 +2,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "LinkedList.h"
-
+//
+struct ListNode {
+    int value;
+    struct ListNode * next;
+};
+typedef struct ListNode ListNode;
+struct LinkedList {
+    ListNode * head;
+};
+typedef struct LinkedList LinkedList;
 //
 // Initialize a linked list
 //
