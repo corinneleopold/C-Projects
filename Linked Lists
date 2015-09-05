@@ -1,8 +1,13 @@
+/* Corinne Leopold
+ *
+ * Linked List Functions
+ */
+
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-//
+
 struct ListNode {
     int value;
     struct ListNode * next;
@@ -12,24 +17,21 @@ struct LinkedList {
     ListNode * head;
 };
 typedef struct LinkedList LinkedList;
-//
-// Initialize a linked list
-//
+
+// Initialize linked list
 void llist_init(LinkedList * list) {
     list->head = NULL;
 }
-//
+
 // Adds value to beginning of list
-//
 void llist_add(LinkedList * list, int value) {
     ListNode * n = (ListNode *) malloc(sizeof(ListNode));
     n->value = value;
     n->next = list->head;
     list->head = n;
 }
-//
+
 // Checks to see if the value exists in the list
-//
 int llist_exists(LinkedList * list, int value) {
     ListNode * e;
     e = list->head;
@@ -39,9 +41,8 @@ int llist_exists(LinkedList * list, int value) {
     e = e->next;
     }
 }
-//
+
 // Removes the first entry in the list and puts value in *value. It also frees memory allocated for the node
-//
 int llist_remove_first(LinkedList * list, int * value) {
     ListNode * current = list->head;
     int returnVal = 0;
@@ -57,9 +58,8 @@ int llist_remove_first(LinkedList * list, int * value) {
     free(current);
     return returnVal;
 }
-//
+
 // Removes the last entry in the list and puts value in *value. It also frees memory allocated for node.
-//
 int llist_remove_first(LinkedList * list, int * value) {
 ListNode * current = list->head;
 int returnVal = 0;
@@ -75,9 +75,8 @@ current = current->next;
 free(current);
 return returnVal;
 }
-//
+
 // Stores in *value the value that correspond to the ith entry. Returns 1 if success or 0 if there is no ith entry.
-//
 int llist_get_ith(LinkedList * list, int ith, int * value) {
     ListNode * e = list->head;
     int n = 0;
@@ -91,9 +90,8 @@ int llist_get_ith(LinkedList * list, int ith, int * value) {
     }
     return 0;
 }
-//
+
 // Saves the list in a file
-//
 int llist_save(LinkedList * list, char * file_name) {
     ListNode * current = list->head;
     FILE *f;
@@ -108,9 +106,8 @@ int llist_save(LinkedList * list, char * file_name) {
     fclose(f);
     return 0;
 }
-//
+
 // Sorts the list in ascending order
-//
 void llist_sort(LinkedList * list) {
     ListNode * current = list->head;
     ListNode * other = NULL;
@@ -129,9 +126,8 @@ void llist_sort(LinkedList * list) {
         }
     } while (flag);
 }
-//
+
 // Removes the ith entry from the list. Returns 1 if success or 0 if there is no ith entry.
-//
 int llist_remove_ith(LinkedList * list, int ith) {
     ListNode * current = list->head;
     ListNode * previous = NULL;
@@ -147,18 +143,16 @@ int llist_remove_ith(LinkedList * list, int ith) {
     }
     return 0;
 }
-//
+
 // Inserts a value at the beginning of the list.
-//
 void llist_insert_first(LinkedList * list, int value) {
     ListNode * current = (ListNode *)malloc(sizeof(ListNode));
     current->value = value;
     current->next = list->head;
     list->head = current;
 }
-//
+
 // Inserts a value at the end of the list.
-//
 void llist_insert_last(LinkedList * list, int value) {
     ListNode * current = (ListNode *)malloc(sizeof(ListNode));
     ListNode * last;
@@ -176,9 +170,8 @@ void llist_insert_last(LinkedList * list, int value) {
     last->next = current;
     }
 }
-//
+
 // Clears all elements in the list and free the nodes
-//
 void llist_clear(LinkedList *list) {
     ListNode * current = list->head;
     ListNode * next = NULL;
@@ -189,9 +182,8 @@ void llist_clear(LinkedList *list) {
     } 
     list->head = NULL;
 }
-//
+
 // Prints the elements in the list
-//
 void llist_print(LinkedList * list) {
     ListNode * e;
     if (list->head == NULL) {
@@ -208,9 +200,8 @@ void llist_print(LinkedList * list) {
     }
     printf("}\n");
 }
-//
+
 // Lists the number of elements in the list
-//
 int llist_number_elements(LinkedList * list) {
         ListNode * e = list->head;
         int n = 0;
